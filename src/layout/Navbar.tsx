@@ -14,7 +14,7 @@ export const Navbar = () => {
 
   return (
     <nav className="container-fluid">
-      <ul><li><a href="./" className='contrast' onClick={(e) => e.preventDefault()}><strong>Sticky</strong></a></li></ul>
+      <ul><li><a href="/" className='contrast' ><strong>Sticky</strong></a></li></ul>
       <ul>
         <li>
           <details role="list" dir="rtl">
