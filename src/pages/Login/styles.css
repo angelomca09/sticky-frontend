@@ -1,0 +1,34 @@
+main > article {
+  padding: 0;
+  grid-column-gap: 0;
+}
+
+main > article > div:first-of-type {
+  padding: 2rem;
+}
+
+.login-image {
+  background-color: #374956;
+  background-image: url(src/assets/album.jpg);
+  background-position: center;
+  background-size: cover;
+}
+
+.form-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  gap: 1rem;
+}
+
+.form-header button {
+  font-size: 2rem;
+  border: 0;
+  box-shadow: none !important;
+}
+
+.form-header button :focus {
+  border: 0;
+  box-shadow: none !important;
+}
