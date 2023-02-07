@@ -1,6 +1,7 @@
 import React, { useState } from "react"
+import { toast } from "react-toastify";
 import api from "../../api";
-import { Navbar } from "../../layout/Navbar"
+import { setUser } from "../../services/user";
 import './styles.css'
 
 export const Login = () => {
@@ -23,9 +24,21 @@ export const Login = () => {
     switch (logintype) {
       case true:
         api.singIn({ username, password, email, telephone })
+          .then(res => {
+            if (!res.success) { toast.error(res.message); return }
+            setUser(res);
+            //TODO: Save credentials
+            window.location.reload()
+          })
         break;
       case false:
         api.logIn({ username, password })
+          .then(res => {
+            if (!res.success) { toast.error(res.message); return }
+            setUser(res);
+            //TODO: Save credentials
+            window.location.reload()
+          })
         break;
     }
   }
