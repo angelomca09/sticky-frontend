@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import IUser from '../interfaces/IUser';
-import { getUser, removeUser } from '../services/user'
+import { getUser, clearStorage } from '../services/user'
 import { themeButtonSwitch } from '../ts/theme-switcher'
 
 function Logout() {
-  removeUser();
+  clearStorage();
   window.location.reload();
 }
 

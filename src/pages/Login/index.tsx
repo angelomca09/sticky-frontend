@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import { toast } from "react-toastify";
 import api from "../../api";
-import { setUser } from "../../services/user";
+import { setToken, setUser } from "../../services/user";
 import './styles.css'
 
 export const Login = () => {
@@ -27,7 +27,8 @@ export const Login = () => {
           .then(res => {
             if (!res.success) { toast.error(res.message); return }
             setUser(res);
-            //TODO: Save credentials
+            const token = btoa(`${username}:${password}`);
+            setToken(token);
             window.location.reload()
           })
         break;
@@ -36,7 +37,8 @@ export const Login = () => {
           .then(res => {
             if (!res.success) { toast.error(res.message); return }
             setUser(res);
-            //TODO: Save credentials
+            const token = btoa(`${username}:${password}`);
+            setToken(token);
             window.location.reload()
           })
         break;
