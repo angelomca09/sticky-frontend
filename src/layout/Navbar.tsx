@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import IUser from '../interfaces/IUser';
+import ILogin from '../interfaces/ILogin';
 import { getUser, clearStorage } from '../services/user'
 import { themeButtonSwitch } from '../ts/theme-switcher'
 
@@ -10,7 +10,7 @@ function Logout() {
 
 export const Navbar = () => {
 
-  const [user, setUser] = useState<IUser>(getUser()!);
+  const [user, setUser] = useState<ILogin>(getUser()!);
 
   return (
     <nav className="container-fluid">

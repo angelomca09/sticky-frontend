@@ -1,13 +1,11 @@
-interface IUser {
-  success: boolean,
-  access?: "basic" | "admin",
-  profile?: {
-    id: string,
-    username: string,
-    email: string,
-    telephone: string
-  },
-  message?: string;
-}
+import { IAlbum } from "./IAlbum";
+import { ISticker } from "./ISticker";
 
-export default IUser
+export interface IUser {
+  _id: string,
+  username: string,
+  email: string,
+  telephone: string,
+  albums: IAlbum[],
+  stickers: ISticker[]
+}

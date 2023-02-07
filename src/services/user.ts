@@ -1,12 +1,12 @@
-import IUser from "../interfaces/IUser";
+import ILogin from "../interfaces/ILogin";
 
-function getUser(): IUser | null {
+function getUser(): ILogin | null {
   const user = sessionStorage.getItem("user");
   if (!user) return null;
   return JSON.parse(user);
 }
 
-function setUser(user: IUser): void {
+function setUser(user: ILogin): void {
   sessionStorage.setItem("user", JSON.stringify(user));
 }
 
