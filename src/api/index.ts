@@ -1,15 +1,16 @@
 import axios from "axios";
+import IUser from "../interfaces/IUser";
 
 const api = axios.create({
   baseURL: "http://localhost:3000"
 })
 
-function singIn(form: { username: string, password: string, email: string, telephone: string }) {
-  api.post("auth/signIn", form).then(res => console.log(res))
+async function singIn(form: { username: string, password: string, email: string, telephone: string }) {
+  return api.post("auth/signIn", form).then((res): IUser => res.data)
 }
 
-function logIn(form: { username: string, password: string }) {
-  api.post("auth/logIn", form).then(res => console.log(res))
+async function logIn(form: { username: string, password: string }) {
+  return api.post("auth/logIn", form).then((res): IUser => res.data)
 }
 
 export default {
