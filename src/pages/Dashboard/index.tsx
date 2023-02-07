@@ -3,9 +3,9 @@ import { useState, useEffect } from "react";
 import api from "../../api";
 import { IAlbum } from "../../interfaces/IAlbum";
 import { ISticker } from "../../interfaces/ISticker";
-import { Navbar } from "../../layout/Navbar"
 import { getUser } from "../../services/user"
 import { FaArrowRight } from "react-icons/fa"
+import { Link } from "react-router-dom";
 
 export const Dashboard = () => {
 
@@ -23,7 +23,6 @@ export const Dashboard = () => {
 
   return (
     <>
-      <Navbar />
       <main className="container">
         <div className="grid">
 
@@ -31,7 +30,11 @@ export const Dashboard = () => {
             <div className="grid">
               <h1>Meus Álbuns: {albums.length}</h1>
               <div>
-                <button className="add outline contained rounded"><FaArrowRight /></button>
+                <Link to="/albuns">
+                  <button className="add outline contained rounded"
+                    title="Álbuns"><FaArrowRight />
+                  </button>
+                </Link>
               </div>
             </div>
           </article>
@@ -40,7 +43,11 @@ export const Dashboard = () => {
             <div className="grid">
               <h1>Minhas Figurinhas: {stickers.length}</h1>
               <div >
-                <button className="add outline contained rounded"><FaArrowRight /></button>
+                <Link to="/figurinhas">
+                  <button className="add outline contained rounded"
+                    title="Figurinhas"><FaArrowRight />
+                  </button>
+                </Link>
               </div>
             </div>
           </article>
