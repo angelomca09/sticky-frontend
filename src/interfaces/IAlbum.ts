@@ -4,5 +4,5 @@ export interface IAlbum {
   _id: string,
   name: string,
   pages: number,
-  stickers: ISticker[]
+  stickers: string[]
 }
