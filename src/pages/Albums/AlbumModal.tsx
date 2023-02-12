@@ -19,10 +19,11 @@ export const AlbumModal = ({ isOpen, closeModal, updateUserInfo }: IAlbumModalPr
   const [userAlbuns, setUserAlbuns] = useState<string[]>([]);
 
   useEffect(() => {
+    if (!isOpen) return
     api.getUserById(user?.profile?.id!).then(data => setUserAlbuns(data.albums.map(a => a._id)))
     api.getAlbums().then(albums => setAlbums(albums))
 
-  }, [])
+  }, [isOpen])
 
   function addAlbum(albumId: string) {
     api.addAlbumToUser(albumId)

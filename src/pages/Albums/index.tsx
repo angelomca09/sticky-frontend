@@ -9,6 +9,7 @@ import { Title } from "../../layout/Title"
 import { getUser } from "../../services/user";
 import { AlbumCard } from "./AlbumCard";
 import { AlbumModal } from "./AlbumModal";
+import { EditAlbumModal } from "./EditAlbumModal";
 import "./styles.css";
 export const Albums = () => {
 
@@ -18,9 +19,12 @@ export const Albums = () => {
   const [stickers, setStickers] = useState<ISticker[]>([]);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
 
-  function getUserInfo() {
-    api.getUserById(user.profile?.id!).then(res => {
+  const [selectedAlbumId, setSelectedAlbumId] = useState("");
+
+  async function getUserInfo() {
+    return api.getUserById(user.profile?.id!).then(res => {
       setAlbums(res.albums)
       setStickers(res.stickers)
     })
@@ -38,15 +42,26 @@ export const Albums = () => {
     setIsModalOpen(false);
   }
 
+  function openEditModal(albumId: string) {
+    setSelectedAlbumId(albumId)
+    setIsEditModalOpen(true);
+  }
+
+  function closeEditModal() {
+    setSelectedAlbumId("")
+    setIsEditModalOpen(false);
+  }
+
   return (
     <>
       <AlbumModal isOpen={isModalOpen} closeModal={closeModal} updateUserInfo={getUserInfo} />
+      <EditAlbumModal isOpen={isEditModalOpen} closeModal={closeEditModal} updateUserInfo={getUserInfo} albumId={selectedAlbumId} />
       <SearchBar to="/" placeholder="álbuns" />
       <Title title="Meus Álbuns" />
       <main className="container cards">
         <div className="albums">
           {albums.map((album, i) => (
-            <AlbumCard key={i} album={album} stickers={stickers} />
+            <AlbumCard key={i} album={album} stickers={stickers} selectAlbum={openEditModal} />
           ))}
           <article className="centered">
 

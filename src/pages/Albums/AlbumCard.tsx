@@ -8,9 +8,10 @@ import { stickerCountPerAlbum } from '../../utils/stickerCount';
 interface IAlbumCardProps {
   album: IAlbum;
   stickers: ISticker[];
+  selectAlbum: (albumId: string) => void;
 }
 
-export const AlbumCard = ({ album, stickers }: IAlbumCardProps) => {
+export const AlbumCard = ({ album, stickers, selectAlbum }: IAlbumCardProps) => {
 
   const albumProgressCount = stickerCountPerAlbum(album, stickers);
   const albumTotalCount = album.stickers.length;
@@ -27,7 +28,7 @@ export const AlbumCard = ({ album, stickers }: IAlbumCardProps) => {
     <article>
       <div className="card-header">
         <h1>{album.name}</h1>
-        <Button contrasted><FaEdit /></Button>
+        <Button contrasted onClick={() => selectAlbum(album._id)}><FaEdit /></Button>
       </div>
       <p>
         <b>{albumProgressCount}</b>

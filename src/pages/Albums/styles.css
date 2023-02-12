@@ -44,3 +44,48 @@ dialog > article .albums > div[aria-disabled="true"] > h4 {
 dialog > article .albums :not(:last-of-type) {
   border-bottom: 1px solid #374956;
 }
+
+dialog > article .stickers {
+  min-width: 500px;
+  width: 100%;
+}
+
+dialog > article .stickers > div > h4 {
+  margin: 0;
+}
+dialog > article .stickers > div:hover > h4 {
+  color: #18abdc;
+}
+dialog > article .stickers > div {
+  margin: 0;
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+  max-width: none;
+  width: 100%;
+}
+dialog > article .stickers > div:not(:last-of-type) {
+  border-bottom: 1px solid #374956;
+}
+
+dialog > article .stickers .count-buttons {
+  display: flex;
+  height: 40px;
+  align-items: center;
+}
+dialog > article .stickers .count-buttons .custom-button {
+  scale: 0.5;
+}
+dialog > article .stickers .count-buttons .custom-button > button {
+  margin: 0;
+}
+
+.delete-text {
+  color: firebrick;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.delete-text:hover {
+  text-decoration: none;
+}
