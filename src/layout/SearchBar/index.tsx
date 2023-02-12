@@ -7,9 +7,10 @@ interface ISearchBarProps {
   to?: string;
   handleSearchChange?: (value: string) => void;
   hasSearch?: boolean;
+  placeholder?: string;
 }
 
-export const SearchBar = ({ to, handleSearchChange, hasSearch = true }: ISearchBarProps) => {
+export const SearchBar = ({ to, handleSearchChange, hasSearch = true, placeholder = "" }: ISearchBarProps) => {
   return (
     <div className="container">
       <div className="search-bar">
@@ -24,7 +25,7 @@ export const SearchBar = ({ to, handleSearchChange, hasSearch = true }: ISearchB
           : ""}
         {hasSearch ?
 
-          <input type="search" />
+          <input type="search" placeholder={`Pesquisar ${placeholder}`} />
           : ""}
       </div>
     </div>
