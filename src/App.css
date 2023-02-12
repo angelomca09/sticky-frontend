@@ -31,3 +31,7 @@ article.centered {
   background-color: transparent;
   box-shadow: none;
 }
+
+dialog > article {
+  min-height: 600px;
+}

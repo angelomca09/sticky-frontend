@@ -1,0 +1,46 @@
+.albums {
+  height: auto;
+  display: flex;
+  flex-flow: row wrap;
+  align-content: space-between;
+  justify-content: space-between;
+}
+
+.albums > * {
+  margin: 3rem;
+  max-width: 400px;
+  width: 100%;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+dialog > article input[type="search"] {
+  margin-bottom: 2rem;
+}
+
+dialog > article .albums {
+  min-width: 500px;
+  width: 100%;
+}
+
+dialog > article .albums > div > h4 {
+  margin: 0;
+}
+dialog > article .albums > div:hover > h4 {
+  color: #18abdc;
+}
+dialog > article .albums > div {
+  margin: 0;
+  padding: 1rem;
+  max-width: none;
+  width: 100%;
+}
+dialog > article .albums > div[aria-disabled="true"] > h4 {
+  color: #666;
+}
+dialog > article .albums :not(:last-of-type) {
+  border-bottom: 1px solid #374956;
+}
