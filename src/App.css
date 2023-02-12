@@ -32,6 +32,7 @@ article.centered {
   box-shadow: none;
 }
 
-dialog > article {
-  min-height: 600px;
+article footer {
+  display: flex;
+  gap: 1rem;
 }
