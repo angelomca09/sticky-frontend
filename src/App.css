@@ -17,3 +17,7 @@
 .rounded {
   border-radius: 50%;
 }
+
+.cards {
+  justify-content: start;
+}

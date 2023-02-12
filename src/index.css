@@ -36,3 +36,8 @@ h1 {
 .Toastify button {
   width: auto;
 }
+
+.centered {
+  display: grid;
+  place-items: center;
+}
