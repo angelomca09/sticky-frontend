@@ -21,3 +21,13 @@
 .cards {
   justify-content: start;
 }
+
+.centered {
+  display: grid;
+  place-items: center;
+}
+
+article.centered {
+  background-color: transparent;
+  box-shadow: none;
+}
