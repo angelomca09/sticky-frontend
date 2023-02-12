@@ -6,6 +6,7 @@ import { ISticker } from "../../interfaces/ISticker";
 import { getUser } from "../../services/user"
 import { FaArrowRight } from "react-icons/fa"
 import { Link } from "react-router-dom";
+import { SearchBar } from "../../layout/SearchBar";
 
 export const Dashboard = () => {
 
@@ -23,6 +24,7 @@ export const Dashboard = () => {
 
   return (
     <>
+      <SearchBar placeholder="colecionadores" />
       <main className="container">
         <div className="grid">
 
