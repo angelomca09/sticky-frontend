@@ -39,7 +39,7 @@ export const AlbumModal = ({ isOpen, closeModal, updateUserInfo }: IAlbumModalPr
       <article>
         <div aria-label="Close" className="close" data-target="modal-example" onClick={closeModal}></div>
         <h3>Adicione um álbum</h3>
-        <input type="search" value={filterText} onChange={(event) => setFilterText(event.target.value)} />
+        <input type="search" placeholder="Filtrar" value={filterText} onChange={(event) => setFilterText(event.target.value)} />
         <div className="albums">
           {filteredAlbums.map((album, i) => {
             const albumDisabled = userAlbuns.includes(album._id)
@@ -48,7 +48,7 @@ export const AlbumModal = ({ isOpen, closeModal, updateUserInfo }: IAlbumModalPr
                 onClick={() => {
                   if (!albumDisabled) addAlbum(album._id)
                 }}>
-                <h4>{album.name}</h4>
+                <h4>{album.name} - <small>{album.stickers.length} figs., {album.pages} págs.</small></h4>
               </div>
             )
           })}
