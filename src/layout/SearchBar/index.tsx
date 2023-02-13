@@ -5,12 +5,11 @@ import "./styles.css"
 
 interface ISearchBarProps {
   to?: string;
-  handleSearchChange?: (value: string) => void;
-  hasSearch?: boolean;
+  handleSearchChange: (value: string) => void;
   placeholder?: string;
 }
 
-export const SearchBar = ({ to, handleSearchChange, hasSearch = true, placeholder = "" }: ISearchBarProps) => {
+export const SearchBar = ({ to, handleSearchChange, placeholder = "" }: ISearchBarProps) => {
   return (
     <div className="container">
       <div className="search-bar">
@@ -23,10 +22,8 @@ export const SearchBar = ({ to, handleSearchChange, hasSearch = true, placeholde
             </Link>
           </div>
           : ""}
-        {hasSearch ?
+        <input type="search" placeholder={`Pesquisar ${placeholder}`} onChange={(event) => handleSearchChange(event.target.value)} />
 
-          <input type="search" placeholder={`Pesquisar ${placeholder}`} />
-          : ""}
       </div>
     </div>
   )

@@ -4,7 +4,6 @@ import api from "../../api";
 import { IAlbum } from "../../interfaces/IAlbum";
 import { ISticker } from "../../interfaces/ISticker";
 import { Button } from "../../layout/Button";
-import { SearchBar } from "../../layout/SearchBar"
 import { Title } from "../../layout/Title"
 import { getUser } from "../../services/user";
 import { AlbumCard } from "./AlbumCard";
@@ -22,6 +21,8 @@ export const Albums = () => {
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
 
   const [selectedAlbumId, setSelectedAlbumId] = useState("");
+
+  const subtitle = `${stickers.length} figurinhas`
 
   async function getUserInfo() {
     return api.getUserById(user.profile?.id!).then(res => {
@@ -56,8 +57,7 @@ export const Albums = () => {
     <>
       <AlbumModal isOpen={isModalOpen} closeModal={closeModal} updateUserInfo={getUserInfo} />
       <EditAlbumModal isOpen={isEditModalOpen} closeModal={closeEditModal} updateUserInfo={getUserInfo} albumId={selectedAlbumId} />
-      <SearchBar to="/" placeholder="álbuns" />
-      <Title title="Meus Álbuns" />
+      <Title title="Minha Coleção" subtitle={subtitle} />
       <main className="container cards">
         <div className="albums">
           {albums.map((album, i) => (
