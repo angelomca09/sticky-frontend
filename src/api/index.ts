@@ -25,6 +25,11 @@ async function getUserById(userId: string) {
     .then((res): IUser => res.data)
 }
 
+async function getUserByUsername(username: string) {
+  return api.get(`user/byUsername/${username}`, headers())
+    .then((res): IUser => res.data || null)
+}
+
 async function getAlbum(albumId: string) {
   return api.get(`album/${albumId}`, headers())
     .then((res): IAlbumWithStickers => res.data)
@@ -74,6 +79,7 @@ export default {
   singIn,
   logIn,
   getUserById,
+  getUserByUsername,
   getAlbum,
   getAlbums,
   deleteAlbumFromUser,
