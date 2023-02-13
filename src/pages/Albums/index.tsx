@@ -57,8 +57,8 @@ export const Albums = () => {
     <>
       <AlbumModal isOpen={isModalOpen} closeModal={closeModal} updateUserInfo={getUserInfo} />
       <EditAlbumModal isOpen={isEditModalOpen} closeModal={closeEditModal} updateUserInfo={getUserInfo} albumId={selectedAlbumId} />
-      <Title title="Minha Coleção" subtitle={subtitle} />
       <main className="container cards">
+        <Title title="Minha Coleção" subtitle={subtitle} />
         <div className="albums">
           {albums.map((album, i) => (
             <AlbumCard key={i} album={album} stickers={stickers} selectAlbum={openEditModal} />
