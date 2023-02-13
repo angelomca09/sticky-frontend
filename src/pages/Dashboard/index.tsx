@@ -1,12 +1,15 @@
-
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
+import { FaPlus } from "react-icons/fa";
 import api from "../../api";
 import { IAlbum } from "../../interfaces/IAlbum";
 import { ISticker } from "../../interfaces/ISticker";
-import { getUser } from "../../services/user"
-import { FaArrowRight } from "react-icons/fa"
-import { Link } from "react-router-dom";
-import { SearchBar } from "../../layout/SearchBar";
+import { Button } from "../../layout/Button";
+import { Title } from "../../layout/Title"
+import { getUser } from "../../services/user";
+import { AlbumCard } from "./AlbumCard";
+import { AlbumModal } from "./AlbumModal";
+import { EditAlbumModal } from "./EditAlbumModal";
+import "./styles.css";
 
 export const Dashboard = () => {
 
@@ -15,45 +18,56 @@ export const Dashboard = () => {
   const [albums, setAlbums] = useState<IAlbum[]>([]);
   const [stickers, setStickers] = useState<ISticker[]>([]);
 
-  useEffect(() => {
-    api.getUserById(user.profile?.id!).then(res => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+
+  const [selectedAlbumId, setSelectedAlbumId] = useState("");
+
+  const subtitle = `${stickers.length} figurinhas`
+
+  async function getUserInfo() {
+    return api.getUserById(user.profile?.id!).then(res => {
       setAlbums(res.albums)
       setStickers(res.stickers)
     })
+  }
+
+  useEffect(() => {
+    getUserInfo()
   }, [])
+
+  function openModal() {
+    setIsModalOpen(true);
+  }
+
+  function closeModal() {
+    setIsModalOpen(false);
+  }
+
+  function openEditModal(albumId: string) {
+    setSelectedAlbumId(albumId)
+    setIsEditModalOpen(true);
+  }
+
+  function closeEditModal() {
+    setSelectedAlbumId("")
+    setIsEditModalOpen(false);
+  }
 
   return (
     <>
-      <SearchBar placeholder="colecionadores" />
-      <main className="container">
-        <div className="grid">
+      <AlbumModal isOpen={isModalOpen} closeModal={closeModal} updateUserInfo={getUserInfo} />
+      <EditAlbumModal isOpen={isEditModalOpen} closeModal={closeEditModal} updateUserInfo={getUserInfo} albumId={selectedAlbumId} />
+      <main className="container cards">
+        <Title title="Minha Coleção" subtitle={subtitle} />
+        <div className="albums">
+          {albums.map((album, i) => (
+            <AlbumCard key={i} album={album} stickers={stickers} selectAlbum={openEditModal} />
+          ))}
+          <article className="centered">
 
-          <article className="contrast">
-            <div className="grid">
-              <h1>Meus Álbuns: {albums.length}</h1>
-              <div>
-                <Link to="/albuns">
-                  <button className="add outline contained rounded"
-                    title="Álbuns"><FaArrowRight />
-                  </button>
-                </Link>
-              </div>
-            </div>
+            <Button onClick={openModal} ><FaPlus /></Button>
           </article>
-
-          <article className="contrast">
-            <div className="grid">
-              <h1>Minhas Figurinhas: {stickers.length}</h1>
-              <div >
-                <Link to="/figurinhas">
-                  <button className="add outline contained rounded"
-                    title="Figurinhas"><FaArrowRight />
-                  </button>
-                </Link>
-              </div>
-            </div>
-          </article>
-
         </div>
       </main>
     </>
