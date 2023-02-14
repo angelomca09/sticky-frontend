@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import ILogin from '../../interfaces/ILogin';
 import { getUser, clearStorage } from '../../services/user'
 import { SearchBar } from '../SearchBar';
 import "./styles.css"
@@ -11,17 +10,27 @@ function Logout() {
 
 export const Navbar = () => {
 
-  const [user, setUser] = useState<ILogin>(getUser()!);
+  const user = getUser()!;
 
+  const [username, setUsername] = useState("")
 
   function handleSearchChange(text: string) {
-    //TODO: Fetch users
+    setUsername(text)
+  }
+
+  function handleSearchBarSubmit(event: React.FormEvent) {
+    event.preventDefault();
+    window.location.replace(`/perfil/${username}`)
   }
 
   return (
     <nav className="container-fluid">
       <ul><li><a href="/" className='contrast' ><strong>Sticky</strong></a></li></ul>
-      <ul><SearchBar placeholder='colecionador' handleSearchChange={handleSearchChange} /></ul>
+      <ul>
+        <form className='no-margin' onSubmit={handleSearchBarSubmit}>
+          <SearchBar placeholder='colecionador' handleSearchChange={handleSearchChange} />
+        </form>
+      </ul>
       <ul>
 
         <li><div>{user.profile?.username}</div></li>
