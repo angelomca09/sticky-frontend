@@ -1,6 +1,7 @@
 import axios from "axios";
 import { IAlbum, IAlbumWithStickers } from "../interfaces/IAlbum";
 import ILogin from "../interfaces/ILogin";
+import { ISticker } from "../interfaces/ISticker";
 import { IUser } from "../interfaces/IUser";
 import { getToken, getUser } from "../services/user";
 
@@ -40,6 +41,26 @@ async function getAlbums() {
     .then((res): IAlbum[] => res.data)
 }
 
+async function createAlbum(data: { name: string, pages: number }) {
+  return api.post(`album`, data, headers())
+    .then((res): IAlbum[] => res.data)
+}
+
+async function editAlbum(data: { id: string; name: string, pages: number, stickers: string[] }) {
+  return api.put(`album`, data, headers())
+    .then((res): IAlbum[] => res.data)
+}
+
+async function deleteAlbum(albumId: string) {
+  return api.delete(`album/${albumId}`, headers())
+    .then((res): any => res.data)
+}
+
+async function addStickerToAlbum(data: { stickerId: string, albumId: string }) {
+  return api.post("album/addSticker", data, headers())
+    .then((res): any => res.data)
+}
+
 async function addAlbumToUser(albumId: string) {
   const data = {
     userId: getUser()?.profile?.id,
@@ -55,6 +76,21 @@ async function deleteAlbumFromUser(albumId: string) {
     albumId
   }
   return api.delete("user/album", { ...headers(), data })
+    .then(res => res.data)
+}
+
+async function addSticker(data: { name: string, number: number }) {
+  return api.post("sticker", data, headers())
+    .then((res): ISticker => res.data)
+}
+
+async function editSticker(data: { id: string, name: string, number: number }) {
+  return api.put("sticker", data, headers())
+    .then(res => res.data)
+}
+
+async function deleteSticker(stickerId: string) {
+  return api.delete(`sticker/${stickerId}`, headers())
     .then(res => res.data)
 }
 
@@ -82,8 +118,15 @@ export default {
   getUserByUsername,
   getAlbum,
   getAlbums,
+  createAlbum,
+  editAlbum,
+  deleteAlbum,
+  addStickerToAlbum,
   deleteAlbumFromUser,
   addAlbumToUser,
+  addSticker,
+  editSticker,
+  deleteSticker,
   addStickerToUser,
   removeStickerFromUser
 }

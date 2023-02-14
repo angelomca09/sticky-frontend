@@ -1,0 +1,130 @@
+.albums {
+  height: auto;
+  display: flex;
+  flex-flow: row wrap;
+  align-content: space-between;
+  justify-content: space-between;
+}
+
+.albums > * {
+  margin: 3rem;
+  max-width: 400px;
+  width: 100%;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+dialog > article input[type="search"] {
+  margin-bottom: 2rem;
+}
+
+dialog > article .albums {
+  min-width: 500px;
+  width: 100%;
+}
+
+dialog > article .albums > div > h4 {
+  margin: 0;
+}
+dialog > article .albums > div:hover > h4 {
+  color: #18abdc;
+}
+dialog > article .albums > div {
+  margin: 0;
+  padding: 1rem;
+  max-width: none;
+  width: 100%;
+}
+dialog > article .albums > div[aria-disabled="true"] > h4 {
+  color: #666;
+}
+dialog > article .albums :not(:last-of-type) {
+  border-bottom: 1px solid #374956;
+}
+
+dialog > article .stickers {
+  min-width: 500px;
+  width: 100%;
+}
+
+dialog > article .stickers > div > h4 {
+  margin: 0;
+}
+dialog > article .stickers > div:hover > h4 {
+  color: #18abdc;
+}
+dialog > article .stickers > div {
+  margin: 0;
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+  max-width: none;
+  width: 100%;
+}
+dialog > article .stickers > div:not(:last-of-type) {
+  border-bottom: 1px solid #374956;
+}
+
+dialog > article .stickers .edit-buttons {
+  display: flex;
+  height: 40px;
+  align-items: center;
+}
+dialog > article .stickers .edit-buttons .custom-button {
+  scale: 0.75;
+}
+dialog > article .stickers .edit-buttons .custom-button > button {
+  margin: 0;
+}
+
+dialog > article .add-row {
+  display: flex;
+  justify-content: flex-end;
+  margin: 0 1rem;
+}
+
+dialog > article form > .add-row {
+  margin: 0;
+}
+
+dialog > article .add-row > button {
+  width: fit-content;
+  scale: 0.75;
+  margin: 0;
+}
+
+.align-text {
+  margin: 1rem 0 1rem 1rem !important;
+}
+
+.align-text > * {
+  margin: 0 !important;
+  line-height: 3rem;
+}
+
+.form-buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.form-buttons > button {
+  width: fit-content;
+}
+
+.delete-text {
+  color: firebrick;
+  cursor: pointer;
+  text-decoration: underline;
+  margin: 1rem 0.5rem;
+}
+
+.no-margin {
+  margin: 0;
+}
+
+.delete-text:hover {
+  text-decoration: none;
+}
