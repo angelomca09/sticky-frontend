@@ -20,6 +20,8 @@ export const EditAlbumModal = ({ albumId, isOpen, closeModal, updateAlbums }: IE
   const [name, setName] = useState("");
   const [pages, setPages] = useState(1);
 
+  const canProceed = name && pages;
+
   const [filterText, setFilterText] = useState("");
   const filteredStickers = filterText ? albumStickers.filter(a => a.name.toLowerCase().includes(filterText.trim().toLowerCase())) : albumStickers;
   const albumTotalCount = albumStickers.length ?? 0;
@@ -68,6 +70,11 @@ export const EditAlbumModal = ({ albumId, isOpen, closeModal, updateAlbums }: IE
     setSelectedSticker(null);
   }
 
+  function handlePagesChange(value: string) {
+    if (+value <= 0) { setPages(1); return; }
+    setPages(+value);
+  }
+
   function handleRemoveStickerOpen(sticker: ISticker) {
     setSelectedSticker(sticker);
     setIsDeleteStickerModalOpen(true);
@@ -107,7 +114,7 @@ export const EditAlbumModal = ({ albumId, isOpen, closeModal, updateAlbums }: IE
     if (!albumId) return;
     await api.editAlbum({ id: albumId, name, pages, stickers: albumStickers.map(s => s._id) })
       .then(() => {
-        toast.success("Álbum editado com sucesso!");
+        toast.success("Álbum salvo com sucesso!");
         updateAll();
       })
   }
@@ -123,11 +130,11 @@ export const EditAlbumModal = ({ albumId, isOpen, closeModal, updateAlbums }: IE
             <label htmlFor="name">Nome</label>
             <input id="name" type="text" value={name} onChange={(event) => setName(event.target.value)} />
             <label htmlFor="pages">Páginas</label>
-            <input id="pages" type="number" value={pages} min={1} onChange={(event) => setPages(+event.target.value)} />
+            <input id="pages" type="number" value={pages} min={1} onChange={(event) => handlePagesChange(event.target.value)} />
             <label htmlFor="">&nbsp;</label>
             <div className="form-buttons">
               <span className="delete-text" onClick={() => setIsDeleteModalOpen(true)}><small>Excluir álbum</small></span>
-              <button type="submit">Salvar</button>
+              <button type="submit" disabled={!canProceed}>Salvar</button>
             </div>
           </form>
           <hr />

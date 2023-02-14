@@ -13,6 +13,8 @@ export const AlbumModal = ({ isOpen, closeModal, updateAlbums }: IAlbumModalProp
   const [name, setName] = useState("");
   const [pages, setPages] = useState(1);
 
+  const canProceed = name && pages;
+
   function handlePagesChange(value: string) {
     if (+value <= 0) { setPages(1); return; }
     setPages(+value);
@@ -42,7 +44,7 @@ export const AlbumModal = ({ isOpen, closeModal, updateAlbums }: IAlbumModalProp
         <form onSubmit={addAlbum}>
           <input type="text" placeholder="Nome" value={name} onChange={(event) => setName(event.target.value)} />
           <input type="number" placeholder="Páginas" value={pages} min={1} onChange={(event) => handlePagesChange(event.target.value)} />
-          <button type="submit">Confirmar</button>
+          <button type="submit" disabled={!canProceed}>Confirmar</button>
         </form>
 
       </article>
