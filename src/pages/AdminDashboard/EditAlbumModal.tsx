@@ -19,8 +19,9 @@ export const EditAlbumModal = ({ albumId, isOpen, closeModal, updateAlbums }: IE
   const [albumStickers, setAlbumStickers] = useState<ISticker[]>([]);
   const [name, setName] = useState("");
   const [pages, setPages] = useState(1);
+  const [image, setImage] = useState("");
 
-  const canProceed = name && pages;
+  const canProceed = name && pages && image;
 
   const [filterText, setFilterText] = useState("");
   const filteredStickers = filterText ? albumStickers.filter(a => a.name.toLowerCase().includes(filterText.trim().toLowerCase())) : albumStickers;
@@ -35,6 +36,7 @@ export const EditAlbumModal = ({ albumId, isOpen, closeModal, updateAlbums }: IE
     return api.getAlbum(albumId).then(album => {
       setName(album.name);
       setPages(album.pages);
+      setImage(album.image);
       setAlbumStickers(album.stickers)
     })
   }
@@ -42,6 +44,7 @@ export const EditAlbumModal = ({ albumId, isOpen, closeModal, updateAlbums }: IE
   function clearForm() {
     setName("");
     setPages(1);
+    setImage("");
     setAlbumStickers([]);
   }
 
@@ -112,7 +115,7 @@ export const EditAlbumModal = ({ albumId, isOpen, closeModal, updateAlbums }: IE
   async function editAlbum(event: React.FormEvent) {
     event.preventDefault();
     if (!albumId) return;
-    await api.editAlbum({ id: albumId, name, pages, stickers: albumStickers.map(s => s._id) })
+    await api.editAlbum({ id: albumId, name, pages, image, stickers: albumStickers.map(s => s._id) })
       .then(() => {
         toast.success("Álbum salvo com sucesso!");
         updateAll();
@@ -131,6 +134,8 @@ export const EditAlbumModal = ({ albumId, isOpen, closeModal, updateAlbums }: IE
             <input id="name" type="text" value={name} onChange={(event) => setName(event.target.value)} />
             <label htmlFor="pages">Páginas</label>
             <input id="pages" type="number" value={pages} min={1} onChange={(event) => handlePagesChange(event.target.value)} />
+            <label htmlFor="image">Imagem</label>
+            <input id="image" type="text" value={image} onChange={(event) => setImage(event.target.value)} />
             <label htmlFor="">&nbsp;</label>
             <div className="form-buttons">
               <span className="delete-text" onClick={() => setIsDeleteModalOpen(true)}><small>Excluir álbum</small></span>

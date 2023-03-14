@@ -41,12 +41,12 @@ async function getAlbums() {
     .then((res): IAlbum[] => res.data)
 }
 
-async function createAlbum(data: { name: string, pages: number }) {
+async function createAlbum(data: { name: string, pages: number, image: string }) {
   return api.post(`album`, data, headers())
     .then((res): IAlbum[] => res.data)
 }
 
-async function editAlbum(data: { id: string; name: string, pages: number, stickers: string[] }) {
+async function editAlbum(data: { id: string; name: string, pages: number, image: string, stickers: string[] }) {
   return api.put(`album`, data, headers())
     .then((res): IAlbum[] => res.data)
 }

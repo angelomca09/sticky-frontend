@@ -15,15 +15,21 @@ export const AlbumCard = ({ album, selectAlbum }: IAlbumCardProps) => {
   const albumTotalCount = album.stickers.length;
 
   return (
-    <article>
-      <div className="card-header">
-        <h1>{album.name}</h1>
-        <Button contrasted onClick={() => selectAlbum(album._id)}><FaEdit /></Button>
+    <article className='album-card'>
+
+      <img src={`${album.image}`} ></img>
+
+      <div>
+        <div className="card-header" >
+          <h1>{album.name}</h1>
+          <Button contrasted onClick={() => selectAlbum(album._id)}><FaEdit /></Button>
+        </div>
+        <p>
+          <small>Figurinhas: {albumTotalCount} </small>|
+          <small> Páginas: {album.pages}</small>
+        </p>
       </div>
-      <p>
-        <small>Figurinhas: {albumTotalCount} </small>|
-        <small> Páginas: {album.pages}</small>
-      </p>
+
     </article>
   )
 }

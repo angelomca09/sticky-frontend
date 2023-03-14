@@ -12,8 +12,9 @@ export const AlbumModal = ({ isOpen, closeModal, updateAlbums }: IAlbumModalProp
 
   const [name, setName] = useState("");
   const [pages, setPages] = useState(1);
+  const [image, setImage] = useState("");
 
-  const canProceed = name && pages;
+  const canProceed = name && pages && image;
 
   function handlePagesChange(value: string) {
     if (+value <= 0) { setPages(1); return; }
@@ -24,11 +25,12 @@ export const AlbumModal = ({ isOpen, closeModal, updateAlbums }: IAlbumModalProp
     closeModal();
     setName("");
     setPages(1);
+    setImage("");
   }
 
   async function addAlbum(event: React.FormEvent) {
     event.preventDefault();
-    await api.createAlbum({ name, pages })
+    await api.createAlbum({ name, pages, image })
       .then(async () => {
         toast.success("Álbum criado com sucesso!");
         await updateAlbums();
@@ -44,6 +46,7 @@ export const AlbumModal = ({ isOpen, closeModal, updateAlbums }: IAlbumModalProp
         <form onSubmit={addAlbum}>
           <input type="text" placeholder="Nome" value={name} onChange={(event) => setName(event.target.value)} />
           <input type="number" placeholder="Páginas" value={pages} min={1} onChange={(event) => handlePagesChange(event.target.value)} />
+          <input type="text" placeholder="Imagem" value={image} onChange={(event) => setImage(event.target.value)} />
           <button type="submit" disabled={!canProceed}>Confirmar</button>
         </form>
 
