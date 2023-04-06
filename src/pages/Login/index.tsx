@@ -54,13 +54,13 @@ export const Login = () => {
               <button className={`outline ${!logintype ? "secondary" : ""}`} onClick={() => handleLoginTypeClick(true)} >Cadastrar</button>
               <button className={`outline ${logintype ? "secondary" : ""}`} onClick={() => handleLoginTypeClick(false)} >Entrar</button>
             </div>
-            <form>
-              <input type="text" name="login" placeholder="Login" aria-label="Login" autoComplete="nickname" required value={username} onChange={(event) => setUsername(event.target.value)} />
-              <input type="password" name="password" placeholder="Password" aria-label="Password" autoComplete="current-password" required value={password} onChange={(event) => setPassword(event.target.value)} />
+            <form autoComplete="off">
+              <input type="text" name="login" placeholder="Login" aria-label="Login" required value={username} onChange={(event) => setUsername(event.target.value)} />
+              <input type="password" name="password" placeholder="Password" aria-label="Password" required value={password} onChange={(event) => setPassword(event.target.value)} />
               {logintype ?
                 <>
-                  <input type="email" name="email" placeholder="Email" aria-label="Email" autoComplete="email" required value={email} onChange={(event) => setEmail(event.target.value)} />
-                  <input type="text" name="telephone" placeholder="Telephone" aria-label="telephone" autoComplete="telephone" required value={telephone} onChange={(event) => setTelephone(event.target.value)} />
+                  <input type="email" name="email" placeholder="Email" aria-label="Email" required value={email} onChange={(event) => setEmail(event.target.value)} />
+                  <input type="text" name="telephone" placeholder="Telephone" aria-label="telephone" required value={telephone} onChange={(event) => setTelephone(event.target.value)} />
                 </>
                 : <></>}
               <button type="submit" disabled={!canLogin} onClick={handleLoginClick}>Continuar</button>
