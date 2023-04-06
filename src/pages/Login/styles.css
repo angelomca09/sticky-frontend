@@ -9,7 +9,7 @@ main > article > div:first-of-type {
 
 .login-image {
   background-color: #374956;
-  background-image: url(src/assets/album.jpg);
+  background-image: url(https://images.unsplash.com/photo-1677658990177-cb9d1a5af165?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80);
   background-position: center;
   background-size: cover;
 }
