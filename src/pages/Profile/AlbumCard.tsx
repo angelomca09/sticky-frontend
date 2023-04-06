@@ -24,18 +24,24 @@ export const AlbumCard = ({ album, stickers, selectAlbum }: IAlbumCardProps) => 
   })();
 
   return (
-    <article>
-      <div className="card-header">
-        <h1>{album.name}</h1>
-        <Button contrasted onClick={() => selectAlbum(album._id)}><FaInfo /></Button>
+    <article className='album-card' >
+
+      <img src={`${album.image}`} ></img>
+
+      <div>
+        <div className="card-header">
+          <h1>{album.name}</h1>
+          <Button contrasted onClick={() => selectAlbum(album._id)}><FaInfo /></Button>
+        </div>
+        <p>
+          <b>{albumProgressCount}</b>
+          <small> figurinhas de </small>
+          <b>{albumTotalCount}</b>
+          <small> ({restText})</small>
+        </p>
+        <span>Páginas: {album.pages}</span>
       </div>
-      <p>
-        <b>{albumProgressCount}</b>
-        <small> figurinhas de </small>
-        <b>{albumTotalCount}</b>
-        <small> ({restText})</small>
-      </p>
-      <span>Páginas: {album.pages}</span>
-    </article>
+
+    </article >
   )
 }
